@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yr-v1-annotation" />
+        <module name="yr-v1-common" />
+        <module name="yr-v1-entity" />
+        <module name="yr-v1-mapper" />
+        <module name="yr-v1-product-api" />
+        <module name="yr-v1-redis" />
+        <module name="yr-v1-service" />
+        <module name="yr-v1-web" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

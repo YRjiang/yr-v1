@@ -1,0 +1,69 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/world?characterEncoding=utf-8&serverTimezone=GMT%2B8&generateSimpleParameterMetadata=true&rewriteBatchedStatements=true
+    username: root
+    password: Root123@
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小等待连接数量，最大等待连接数量，最大连接数
+    initialSize: 1
+    minIdle: 1
+    # 已经弃用
+    # maxIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    # 通过connectProperties属性来打开mergeSql功能; 慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    #spring.datasource.useGlobalDataSourceStat=true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    # 解决懒加载是加载完以后Session关闭导致的No Session 异常
+    open-in-view: true
+  main:
+    # 允许重写
+    allow-bean-definition-overriding: true
+
+# mybatis配置文件位置
+mybatis:
+  typeAliasesPackage: com.example.connect_mysql.model
+  mapperLocations: classpath:mapper/*.xml
+  # 开启 mybatis 驼峰命名匹配规则
+  configuration:
+    map-underscore-to-camel-case: true
+    # 开启控制台sql语句打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 配置 localhost:8011/druid/weburi.html 控制台管理用户
+druid:
+  allow: #允许登入的IP地址
+    ip: 127.0.0.1
+  login: #登入的账号密码
+    user_name: admin
+    password: admin
+
+dubbo:
+  application:
+    name: dubbo-product-service
+  registry:
+    protocol: zookeeper
+    address: 192.168.189.132:2181
+  protocol:
+    port: 28840
